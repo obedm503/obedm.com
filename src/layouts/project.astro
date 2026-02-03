@@ -2,40 +2,26 @@
 import { Footer } from "../components/footer";
 import { ExternalLink } from "../components/link";
 import MainHead from "../components/MainHead.astro";
+import Nav from "../components/Nav.astro";
 
-const { content } = Astro.props;
+const { content, frontmatter } = Astro.props;
+const minutesRead = frontmatter?.minutesRead;
 ---
 
 <html lang="en">
   <head>
     <MainHead title={content.title} description={content.description} />
-
-    <script>
-      import mermaid from "mermaid";
-      mermaid.initialize({ startOnLoad: true, theme: "forest" });
-      mermaid.run({
-        querySelector: ".mermaid",
-        suppressErrors: false,
-      });
-    </script>
   </head>
 
-  <body>
-    <nav class="bg-gradient-to-r from-primary to-violet-900 p-4 text-white">
-      <a
-        href="/"
-        class="mx-auto block max-w-3xl text-2xl hover:underline hover:underline-offset-2"
-      >
-        Home
-      </a>
-    </nav>
+  <body class="bg-background text-foreground font-sans">
+    <Nav />
 
     <main>
       <div class="mx-auto flex max-w-3xl flex-col gap-2 px-4">
         <h1 class="items-end justify-between pb-6 pt-6 md:flex md:pt-8">
           <ExternalLink
             href={content.site_url}
-            class="flex items-center text-4xl font-medium hover:underline hover:underline-offset-2"
+            class="flex items-center text-2xl font-medium hover:underline hover:underline-offset-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +44,7 @@ const { content } = Astro.props;
             content.source ? (
               <ExternalLink
                 href={content.source}
-                class="flex items-center text-3xl hover:underline hover:underline-offset-2"
+                class="flex items-center text-xl hover:underline hover:underline-offset-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +65,12 @@ const { content } = Astro.props;
             ) : null
           }
         </h1>
-        <h2 class="text-xl opacity-70">{content.description}</h2>
+        <h2 class="text-lg opacity-70">{content.description}</h2>
+        {
+          minutesRead ? (
+            <p class="text-muted-foreground text-sm">{minutesRead}</p>
+          ) : null
+        }
 
         <div class="grid grid-cols-2">
           <div class="my-2">
@@ -105,7 +96,7 @@ const { content } = Astro.props;
         </div>
       </div>
 
-      <div class="content">
+      <div class="prose mx-auto max-w-3xl px-4 py-6">
         <slot />
       </div>
     </main>

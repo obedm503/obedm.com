@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
 const { title = "", description = "" } = Astro.props;
 ---
@@ -7,16 +8,32 @@ const { title = "", description = "" } = Astro.props;
 <meta charset="UTF-8" />
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#F5F5F5" />
+<meta
+  name="theme-color"
+  content="#eff1f5"
+  media="(prefers-color-scheme: light)"
+/>
+<meta
+  name="theme-color"
+  content="#1e1e2e"
+  media="(prefers-color-scheme: dark)"
+/>
 <title>{title ? `${title} | Obed Miranda` : "Obed Miranda"}</title>
 
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-<link rel="preconnect" href="https://fonts.gstatic.com" />
-<link
-  href="https://fonts.googleapis.com/css?family=Inconsolata:100,200,300,400,500,600,700,800,900"
-  rel="stylesheet"
-  type="text/css"
-/>
+<script is:inline>
+  (function () {
+    const stored = localStorage.getItem("theme");
+    const prefersDark =
+      stored === "dark" ||
+      (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    if (prefersDark) {
+      document.documentElement.classList.add("dark", "mocha");
+    } else {
+      document.documentElement.classList.add("latte");
+    }
+  })();
+</script>
 
 <ViewTransitions />

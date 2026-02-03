@@ -1,9 +1,9 @@
-import { Links } from "./links";
+import { Links } from "./links.jsx";
 
 export function Footer() {
   return (
     <footer
-      class="mt-8 bg-primary p-8 text-center text-white"
+      class="bg-primary text-primary-foreground mt-8 p-8 text-center"
       style="box-sizing: border-box; clip-path: ellipse(95% 100% at 30% 100%);"
     >
       <Links />

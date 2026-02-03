@@ -34,7 +34,7 @@ import nuffread2 from "../img/nuffread-2.png";
 
 <Image src={nuffread} alt="nuffread.com" transition:name="image" />
 
-# Overview
+## Overview
 
 Textbook costs amount to a significant part of the cost of higher education.
 College students on a tight budget often resort to buying used textbooks from
@@ -42,7 +42,7 @@ other students. There was a need for a marketplace purpose-built and dedicated
 to facilitating exchage books. We created [nuffread.com](https://www.nuffread.com)
 to solve this specific need.
 
-# Architecture
+## Architecture
 
 [nuffread.com](https://www.nuffread.com) is an on-going project built as
 multiple clients sharing a [Graphql](https://graphql.org/) API on top of a
@@ -61,8 +61,7 @@ server-side rendered application styled with [Tailwind CSS](https://tailwindcss.
 and deployed to [Vercel](https://vercel.com/). I also built a administrative
 backend client with the same stack.
 
-<div class="mermaid mx-auto max-w-3xl" is:raw>
-{`
+```mermaid
 flowchart TD
     Mixpanel(Mixpanel)
     API{Graphql API}
@@ -75,8 +74,7 @@ flowchart TD
     Beta[beta.nuffread.com] -.-> Mixpanel
     Web[www.nuffread.com] -.-> Mixpanel
     Mobile[Mobile] -.-> Mixpanel
-`}
-</div>
+```
 
 The backend is composed of a Graphql API built with [Apollo Server](https://www.apollographql.com/)
 with PostgreSQL as a datastore deployed to [Heroku](https://heroku.com/).
