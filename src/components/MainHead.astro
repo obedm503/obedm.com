@@ -1,7 +1,13 @@
 ---
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
 const { title = "", description = "" } = Astro.props;
 ---
 
@@ -36,4 +42,4 @@ const { title = "", description = "" } = Astro.props;
   })();
 </script>
 
-<ViewTransitions />
+<ClientRouter />

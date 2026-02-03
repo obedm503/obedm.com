@@ -3,6 +3,14 @@ import { Footer } from "../components/footer";
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 
+type Props = {
+  frontmatter: {
+    title: string;
+    description?: string;
+    minutesRead?: string;
+  };
+};
+
 const { frontmatter } = Astro.props;
 ---
 
@@ -16,7 +24,7 @@ const { frontmatter } = Astro.props;
 
     <main>
       <div class="mx-auto flex max-w-3xl flex-col gap-2 px-4">
-        <h1 class="pb-2 pt-6 text-2xl font-bold md:pt-8">
+        <h1 class="pt-6 pb-2 text-2xl font-bold md:pt-8">
           {frontmatter.title}
         </h1>
         <p class="text-muted-foreground text-sm">{frontmatter.minutesRead}</p>

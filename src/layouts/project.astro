@@ -4,6 +4,22 @@ import { ExternalLink } from "../components/link";
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 
+type Props = {
+  content: {
+    title: string;
+    description: string;
+    site_url: string;
+    source?: string;
+    duration: string;
+    team: string[];
+    roles: string[];
+    stack: string[];
+  };
+  frontmatter?: {
+    minutesRead?: string;
+  };
+};
+
 const { content, frontmatter } = Astro.props;
 const minutesRead = frontmatter?.minutesRead;
 ---
@@ -18,7 +34,7 @@ const minutesRead = frontmatter?.minutesRead;
 
     <main>
       <div class="mx-auto flex max-w-3xl flex-col gap-2 px-4">
-        <h1 class="items-end justify-between pb-6 pt-6 md:flex md:pt-8">
+        <h1 class="items-end justify-between pt-6 pb-6 md:flex md:pt-8">
           <ExternalLink
             href={content.site_url}
             class="flex items-center text-2xl font-medium hover:underline hover:underline-offset-2"
