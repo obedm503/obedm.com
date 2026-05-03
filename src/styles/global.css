@@ -14,7 +14,7 @@
 
 @theme {
   --font-sans:
-    "IBM Plex Sans Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    "Inter Variable", sanf-serif, ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
   --font-mono:
     "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
