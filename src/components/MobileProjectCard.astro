@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+  title: string;
+  url?: string;
+  repo?: string;
+  image: ImageMetadata;
+  description: string;
+  languages?: Array<{ color: string; name: string }>;
+};
+
+const { title, url, repo, image, description, languages = [] } = Astro.props;
+const href = url || repo;
+---
+
+<a
+  href={href || "#"}
+  target={href ? "_blank" : undefined}
+  rel={href ? "noopener noreferrer" : undefined}
+  class="bg-card col-span-3 flex items-center gap-3 overflow-hidden rounded-lg p-3 shadow-md transition duration-500 ease-in-out md:hidden"
+>
+  <Image
+    src={image}
+    alt={title}
+    class="w-14 shrink-0 object-cover"
+    transition:name="image"
+  />
+
+  <div class="min-w-0 flex-1">
+    <h2 class="text-sm font-semibold whitespace-nowrap">
+      {title}
+    </h2>
+
+    <!-- {
+      repo ? (
+        <div class="text-md justify-start py-1">
+          <ExternalLink
+            href={repo}
+            class="text-primary hover:text-accent flex items-center font-semibold hover:underline"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mr-2 h-[1em] w-[1em]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              />
+            </svg>
+            Source
+          </ExternalLink>
+        </div>
+      ) : null
+    } -->
+
+    <p class="text-muted-foreground text-xs">
+      {description}
+    </p>
+
+    <!-- <div class="mt-1">
+      {
+        languages.map(l => (
+          <span class="mr-2 flex items-center text-xs">
+            <svg
+              style={`color: ${l.color}`}
+              height="16"
+              width="16"
+              viewBox="0 0 16 16"
+              version="1.1"
+              class="mr-1 inline-block fill-current"
+            >
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+            {l.name}
+          </span>
+        ))
+      }
+    </div> -->
+  </div>
+</a>
