@@ -6,16 +6,31 @@ type Props = {
   title: string;
   url?: string;
   repo?: string;
+  path?: string;
   image: ImageMetadata;
   description: string;
   languages?: Array<{ color: string; name: string }>;
+  spotlight?: boolean;
 };
 
-const { title, url, repo, image, description, languages = [] } = Astro.props;
+const {
+  title,
+  url,
+  path,
+  repo,
+  image,
+  description,
+  languages = [],
+  spotlight,
+} = Astro.props;
+const href = path || url;
 ---
 
 <div
-  class="bg-card col-span-3 hidden items-center gap-0 overflow-hidden rounded-lg p-4 shadow-md transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg md:block"
+  class:list={[
+    "bg-card col-span-3 hidden items-center gap-0 overflow-hidden rounded-lg p-4 shadow-md transition duration-500 ease-in-out hover:scale-105 hover:shadow-lg md:block",
+    spotlight && "border-primary md:border-4",
+  ]}
 >
   <Image
     src={image}
@@ -25,11 +40,11 @@ const { title, url, repo, image, description, languages = [] } = Astro.props;
   />
 
   <div class="min-w-0 flex-1 pt-4">
-    <h2 class="text-xl font-semibold whitespace-nowrap">
+    <h2 class="text-lg font-semibold">
       {
-        url || repo ? (
+        href ? (
           <ExternalLink
-            href={(url || repo)!}
+            href={href}
             class="hover:text-primary flex items-center hover:underline"
           >
             <svg
@@ -101,7 +116,7 @@ const { title, url, repo, image, description, languages = [] } = Astro.props;
       }
     </div>
 
-    <p class="block">
+    <p class="text-md text-muted-foreground font-sans leading-snug">
       {description}
     </p>
   </div>

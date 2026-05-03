@@ -6,7 +6,7 @@ export function Links() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://github.com/obedm503/"
-        class={"fill-current px-2 py-0 md:p-4" + growText}
+        class={"fill-current px-3 py-0 md:p-4" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ export function Links() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://www.linkedin.com/in/obed-miranda/"
-        class={"fill-current px-2 py-0 md:p-4" + growText}
+        class={"fill-current px-3 py-0 md:p-4" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ export function Links() {
         target="_blank"
         rel="noopener noreferrer"
         href="https://twitter.com/obed__miranda"
-        class={"fill-current px-2 py-0 md:p-4" + growText}
+        class={"fill-current px-3 py-0 md:p-4" + growText}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

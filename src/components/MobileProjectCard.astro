@@ -5,20 +5,34 @@ type Props = {
   title: string;
   url?: string;
   repo?: string;
+  path?: string;
   image: ImageMetadata;
   description: string;
   languages?: Array<{ color: string; name: string }>;
+  spotlight?: boolean;
 };
 
-const { title, url, repo, image, description, languages = [] } = Astro.props;
-const href = url || repo;
+const {
+  title,
+  url,
+  path,
+  repo,
+  image,
+  description,
+  languages = [],
+  spotlight,
+} = Astro.props;
+const href = path || url || repo;
 ---
 
 <a
   href={href || "#"}
   target={href ? "_blank" : undefined}
   rel={href ? "noopener noreferrer" : undefined}
-  class="bg-card col-span-3 flex items-center gap-3 overflow-hidden rounded-lg p-3 shadow-md transition duration-500 ease-in-out md:hidden"
+  class:list={[
+    "bg-card col-span-3 flex items-center gap-3 overflow-hidden rounded-lg p-3 shadow-md transition duration-500 ease-in-out md:hidden",
+    spotlight && "border-primary border-2",
+  ]}
 >
   <Image
     src={image}
@@ -59,7 +73,7 @@ const href = url || repo;
       ) : null
     } -->
 
-    <p class="text-muted-foreground text-xs">
+    <p class="text-muted-foreground font-sans text-xs">
       {description}
     </p>
 

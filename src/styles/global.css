@@ -13,9 +13,11 @@
 }
 
 @theme {
-  --font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+  --font-sans:
+    "IBM Plex Sans Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, "Liberation Mono", "Courier New", monospace;
 
   --color-background: var(--catppuccin-color-base);
@@ -36,6 +38,9 @@
 
 html {
   font-size: 20px;
+}
+body {
+  @apply bg-background text-foreground font-mono;
 }
 main {
   @apply overflow-auto;
@@ -62,7 +67,7 @@ main {
 
 .prose {
   img {
-    @apply max-w-svw my-4 ml-[calc(50%-50vw)] w-screen md:my-8;
+    @apply my-4 ml-[calc(50%-50vw)] w-screen max-w-svw md:my-8;
   }
   .mermaid {
     @apply w-full;

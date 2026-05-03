@@ -8,6 +8,8 @@ import ProjectCard from "../components/ProjectCard.astro";
 import MobileProjectCard from "../components/MobileProjectCard.astro";
 import { ThemeToggle } from "../components/theme-toggle";
 
+import checkrs from "../img/checkrs.png";
+import macrocycles from "../img/macrocycles.svg";
 import database from "../img/database.png";
 import linux from "../img/linux.png";
 import microwiki from "../img/microwiki.png";
@@ -26,26 +28,31 @@ type Project = {
   image: ImageMetadata;
   description: string;
   path?: string;
+  spotlight?: boolean;
 };
-const spotlight: Project[] = [
-  {
-    title: "nuffread.com",
-    nameWithOwner: "obedm503/nuffread",
-    url: "https://beta.nuffread.com/",
-    repo: "https://github.com/obedm503/nuffread",
-    image: nuffread,
-    description: "",
-    path: "/nuffread",
-  },
-];
+
 const projects: Project[] = [
+  {
+    title: "MacroCycles",
+    url: "https://macrocycles.app/",
+    image: macrocycles,
+    description: "Personal local-first workout tracker",
+    spotlight: true,
+  },
+  {
+    title: "Checkrs.ai",
+    url: "https://checkrs.ai/",
+    image: checkrs,
+    description: "Play checkers against ChatGPT",
+    spotlight: true,
+  },
   {
     title: "trellix-offline",
     nameWithOwner: "obedm503/trellix-offline",
     repo: "https://github.com/obedm503/trellix-offline",
     image: database,
     description:
-      "A set of experiments to compare different local-first libraries inspired by Ryan Florence's Trellix.",
+      "Experiments comparing local-first libraries inspired by Ryan Florence's Trellix",
   },
   {
     title: "Pokedex Improved",
@@ -58,7 +65,6 @@ const projects: Project[] = [
   {
     title: "obedm.com",
     nameWithOwner: "obedm503/obedm.com",
-    url: "https://obedm.com/",
     repo: "https://github.com/obedm503/obedm.com",
     image: obedm,
     description: "",
@@ -100,7 +106,15 @@ const projects: Project[] = [
     nameWithOwner: "ncai-developers/studentaccess",
     repo: "https://github.com/ncai-developers/studentaccess",
     image: studentaccess,
-    description: "NCAI student mobile client.",
+    description: "NCAI student mobile client",
+  },
+  {
+    title: "nuffread.com",
+    nameWithOwner: "obedm503/nuffread",
+    repo: "https://github.com/obedm503/nuffread",
+    image: nuffread,
+    description: "",
+    path: "/nuffread",
   },
 ];
 
@@ -179,7 +193,7 @@ try {
     <MainHead />
   </head>
 
-  <body class="bg-background text-foreground font-sans">
+  <body>
     <main>
       <div class="from-primary to-secondary bg-linear-to-r">
         <div
@@ -188,7 +202,7 @@ try {
           <ThemeToggle client:load />
         </div>
         <div
-          class="text-primary-foreground mx-auto px-4 pb-6 text-center md:px-8 md:pt-16 md:pb-44 lg:w-1/2 xl:w-1/3"
+          class="text-primary-foreground mx-auto px-4 pb-6 text-center md:px-8 md:pt-4 md:pb-20 lg:w-1/2 xl:w-1/3"
         >
           <h2 class="font-mono text-lg font-bold uppercase md:text-2xl">
             Obed Miranda
@@ -237,14 +251,14 @@ try {
         </div>
       </div>
 
-      <div class="mx-auto my-2 px-4 md:my-4 md:max-w-6xl md:px-8">
-        <h2 class="hidden p-4 pb-8 text-center text-2xl font-semibold md:block">
+      <div class="mx-auto my-4 px-4 md:my-4 md:max-w-6xl md:px-8">
+        <h2 class="mb-6 hidden text-center text-2xl font-semibold md:block">
           Proof of Work
         </h2>
         <div
-          class="flex grid-cols-9 flex-col gap-3 space-y-2 md:gap-6 md:space-y-0 lg:grid"
+          class="flex grid-cols-9 flex-col gap-4 md:gap-6 md:space-y-0 lg:grid"
         >
-          {
+          <!-- {
             spotlight.map(item => {
               const repo = item.nameWithOwner
                 ? repos[item.nameWithOwner]
@@ -253,7 +267,7 @@ try {
               return (
                 <a
                   href={item.path}
-                  class="border-primary bg-card col-span-6 flex items-center gap-3 overflow-hidden rounded-lg border-2 p-3 shadow-md transition duration-500 ease-in-out md:block md:gap-0 md:border-4 md:p-4 md:hover:scale-105 md:hover:shadow-lg"
+                  class="border-primary bg-card col-span-3 flex items-center gap-3 overflow-hidden rounded-lg border-2 p-3 shadow-md transition duration-500 ease-in-out md:block md:gap-0 md:border-4 md:p-4 md:hover:scale-105 md:hover:shadow-lg"
                 >
                   <Image
                     src={item.image}
@@ -299,7 +313,7 @@ try {
                 </a>
               );
             })
-          }
+          } -->
 
           {
             projects.map(item => {
@@ -308,22 +322,28 @@ try {
                 : undefined;
 
               return (
-                <ProjectCard
-                  title={item.title}
-                  url={item.url}
-                  repo={item.repo}
-                  image={item.image}
-                  description={item.description || repo?.description || ""}
-                  languages={repo?.languages.nodes}
-                />
-                <MobileProjectCard
-                  title={item.title}
-                  url={item.url}
-                  repo={item.repo}
-                  image={item.image}
-                  description={item.description || repo?.description || ""}
-                  languages={repo?.languages.nodes}
-                />
+                <>
+                  <ProjectCard
+                    title={item.title}
+                    url={item.url}
+                    path={item.path}
+                    repo={item.repo}
+                    image={item.image}
+                    description={item.description || repo?.description || ""}
+                    languages={repo?.languages.nodes}
+                    spotlight={item.spotlight}
+                  />
+                  <MobileProjectCard
+                    title={item.title}
+                    url={item.url}
+                    path={item.path}
+                    repo={item.repo}
+                    image={item.image}
+                    description={item.description || repo?.description || ""}
+                    languages={repo?.languages.nodes}
+                    spotlight={item.spotlight}
+                  />
+                </>
               );
             })
           }
